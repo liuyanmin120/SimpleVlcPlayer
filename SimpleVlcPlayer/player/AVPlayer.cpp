@@ -58,8 +58,12 @@ bool CAVPlayer::Play(const std::string &strPath)
     bool bRet = false;
     libvlc_media_t *m;
 
-    m = libvlc_media_new_path(m_pVLC_Inst, strPath.c_str());
-    
+	if (strPath.find("//") != std::string::npos) { // url
+		m = libvlc_media_new_location(m_pVLC_Inst, strPath.c_str());
+	}
+	else {
+		m = libvlc_media_new_path(m_pVLC_Inst, strPath.c_str());
+	}
 
     if (m)
     {

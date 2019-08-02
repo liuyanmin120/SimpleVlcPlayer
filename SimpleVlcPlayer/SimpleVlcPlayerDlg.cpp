@@ -217,6 +217,9 @@ void CSimpleVlcPlayerDlg::OnBnClickedButtonPlay()
 	// TODO: Add your control notification handler code here
 	CString strBtnName = L"";
 	GetDlgItemText(IDC_BUTTON_PLAY, strBtnName);
+	GetDlgItemText(IDC_EDIT_PATH, m_strFilePath);
+
+
 	if (L"²¥·Å" == strBtnName)
 	{
 		if (!m_myPlayer.IsOpen())
@@ -224,7 +227,7 @@ void CSimpleVlcPlayerDlg::OnBnClickedButtonPlay()
 			if (m_strFilePath != L"")
 			{
 				m_myPlayer.Play((LPCSTR)UnicodeToUTF8(m_strFilePath));
-				::SetTimer(NULL, 1, 1000, TimeProc);
+				::SetTimer(NULL, 1, 1000, (TIMERPROC)TimeProc);
 				SetDlgItemText(IDC_BUTTON_PLAY, L"ÔÝÍ£");
 			}
 		}
